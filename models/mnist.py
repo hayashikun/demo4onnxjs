@@ -70,7 +70,7 @@ def to_onnx():
     net.load_state_dict(state_dict)
     x = torch.zeros(1, 28 * 28)
     for opv in [9, 10, 11, 12]:
-        torch.onnx.export(net, x, f"data/mnist_1_v{opv}.pt", opset_version=opv)
+        torch.onnx.export(net, x, f"data/mnist_1_v{opv}.onnx", opset_version=opv)
 
 
 if __name__ == "__main__":
