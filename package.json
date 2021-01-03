@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && mv build docs",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "copy-files": "node copy-files.js"
@@ -45,5 +45,6 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7"
-  }
+  },
+  "homepage":"https://hayashikun.github.io/demo4onnxjs"
 }
