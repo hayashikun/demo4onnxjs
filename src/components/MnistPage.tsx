@@ -5,21 +5,22 @@ import DrawableCanvas from "./DrawableCanvas";
 
 const MnistPage: React.FC = () => {
     const canvasRef: React.MutableRefObject<DrawableCanvas | null> = useRef(null);
-    const [modelLoaded, setModelLoaded] = useState(false);
+    const [sessionStatus, setSessionStatus] = useState("");
     const [backend, setBackend] = useState("cpu");
     const [version, setVersion] = useState(9);
+    const [model, setModel] = useState("Net1");
     const [inferenceSession, setInferenceSession]: [InferenceSession | null, any] = useState(null)
     const [probabilities, setProbabilities] = useState(new Float32Array(10))
 
     const loadModel = async () => {
-        setModelLoaded(false);
+        setSessionStatus("");
         let session = new InferenceSession({backendHint: backend});
         try {
-            await session.loadModel(`/models/mnist_1_v${version}.onnx`);
-            setModelLoaded(true);
+            await session.loadModel(`/models/mnist_${model}_v${version}.onnx`);
+            setSessionStatus(`mnist_${model}_v${version} (${backend})`);
             setInferenceSession(session);
         } catch (e) {
-            console.log(e)
+            setSessionStatus("Error: " + e);
         }
     }
 
@@ -32,8 +33,7 @@ const MnistPage: React.FC = () => {
         if (data == null) {
             return;
         }
-        console.log(data.map(d => d * 2 - 1))
-        const tensor = new Tensor(data.map(d => d * 2 - 1), "float32", [1, 28 * 28]);
+        const tensor = new Tensor(data, "float32", [1, 1, 28, 28]);
         const result = await inferenceSession!.run([tensor]);
         setProbabilities(result.values().next().value.data);
     }
@@ -49,13 +49,24 @@ const MnistPage: React.FC = () => {
     return (
         <div style={{margin: "24px"}}>
             <h1>MNIST</h1>
+            <div>
+                Model:
+                <select value={model}
+                        onChange={(e) => {
+                            setModel(e.target.value);
+                            setSessionStatus("");
+                        }}>
+                    <option value="Net1">Net1</option>
+                    <option value="Net2">Net2</option>
+                </select>
+            </div>
 
             <div>
                 Backend:
                 <select value={backend}
                         onChange={(e) => {
                             setBackend(e.target.value);
-                            setModelLoaded(false);
+                            setSessionStatus("");
                         }}>
                     <option value="cpu">cpu</option>
                     <option value="webgl">webgl</option>
@@ -68,7 +79,7 @@ const MnistPage: React.FC = () => {
                 <select value={version}
                         onChange={(e) => {
                             setVersion(parseInt(e.target.value));
-                            setModelLoaded(false);
+                            setSessionStatus("");
                         }}>
                     <option value="9">9</option>
                     <option value="10">10</option>
@@ -79,7 +90,7 @@ const MnistPage: React.FC = () => {
 
             <div>
                 <button onClick={loadModel}>Load</button>
-                {modelLoaded && <span>({backend}, {version})</span>}
+                <span>{sessionStatus}</span>
             </div>
 
             <DrawableCanvas
