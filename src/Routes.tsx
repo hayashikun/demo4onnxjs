@@ -4,7 +4,7 @@ import MainPage from "./components/MainPage";
 import MnistPage from "./components/MnistPage";
 
 export const Routes: React.FC = () => (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
             <Route exact path="/" component={MainPage}/>
             <Route exact path="/mnist" component={MnistPage}/>

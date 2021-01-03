@@ -46,5 +46,5 @@
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7"
   },
-  "homepage":"http://demo4onnxjs.hayashikun.com/"
+  "homepage":"https://hayashikun.github.io/demo4onnxjs/"
 }
