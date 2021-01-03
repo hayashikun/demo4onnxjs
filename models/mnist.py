@@ -23,9 +23,9 @@ class Net1(nn.Module):
     def __init__(self):
         super(Net1, self).__init__()
         self.model = nn.Sequential(
-            nn.Linear(28 * 28, 100),
+            nn.Linear(28 * 28, 196),
             nn.Sigmoid(),
-            nn.Linear(100, 10),
+            nn.Linear(196, 10),
             nn.Softmax(1)
         )
 
@@ -36,7 +36,7 @@ class Net1(nn.Module):
 def train():
     net = Net1()
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(net.parameters(), lr=0.01)
+    optimizer = optim.Adam(net.parameters(), lr=0.001)
     train_loader, test_loader = prepare_data_loader()
 
     iter_count = 0
@@ -50,7 +50,7 @@ def train():
             loss.backward()
             optimizer.step()
 
-            if iter_count % 1000 == 0:
+            if iter_count % 100 == 0:
                 print(f"{iter_count} iter - loss: {loss.item()}")
                 losses.append(loss.item())
             iter_count += 1

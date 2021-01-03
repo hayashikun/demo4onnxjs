@@ -84,12 +84,12 @@ const MnistPage: React.FC = () => {
 
             <DrawableCanvas
                 ref={canvasRef}
-                style={{border: "1px solid black"}}
+                style={{border: "1px solid black", margin: "8px"}}
                 displayHeight={300}
                 displayWidth={300}
                 dataHeight={28}
                 dataWidth={28}
-                lineWidth={10}
+                lineWidth={15}
             />
             <button onClick={evaluate}>Eval</button>
             <button onClick={clearCanvas}>Clear</button>
