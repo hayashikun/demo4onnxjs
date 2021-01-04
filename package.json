@@ -20,10 +20,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf docs && mv build docs && cp CNAME docs/",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "copy-files": "node copy-files.js"
+    "copy-files": "node copy-files.js",
+    "deploy": "cp CNAME build/ && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,7 +45,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "gh-pages": "^3.1.0"
   },
-  "homepage":"https://demo4onnxjs.hayashikun.com/"
+  "homepage": "https://demo4onnxjs.hayashikun.com/"
 }
