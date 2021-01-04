@@ -3,7 +3,7 @@ import {HashRouter, Redirect, Route, Switch} from "react-router-dom";
 import MainPage from "./components/MainPage";
 import MnistPage from "./components/MnistPage";
 
-export const Routes: React.FC = () => (
+export const App: React.FC = () => (
     <HashRouter basename={process.env.PUBLIC_URL}>
         <Switch>
             <Route exact path="/" component={MainPage}/>
@@ -13,4 +13,4 @@ export const Routes: React.FC = () => (
     </HashRouter>
 );
 
-export default Routes;
+export default App;
