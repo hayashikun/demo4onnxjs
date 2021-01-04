@@ -10,17 +10,17 @@ const MainPage: React.FC = () => {
             </ul>
 
             <ul>
-                <li><Link to="https://github.com/hayashikun/demo4onnxjs">hayashikun/demo4onnxjs</Link></li>
+                <li><a href="https://github.com/hayashikun/demo4onnxjs">hayashikun/demo4onnxjs</a></li>
                 <li>
-                    <Link to="https://github.com/microsoft/onnxjs">microsoft/onnxjs</Link>
+                    <a href="https://github.com/microsoft/onnxjs">microsoft/onnxjs</a>
                     <ul>
-                        <li><Link to="https://github.com/microsoft/onnxjs/blob/master/docs/operators.md">operators.md</Link></li>
+                        <li><a href="https://github.com/microsoft/onnxjs/blob/master/docs/operators.md">operators.md</a></li>
                     </ul>
                 </li>
                 <li>
-                    <Link to="https://github.com/onnx/onnx">onnx/onnx</Link>
+                    <a href="https://github.com/onnx/onnx">onnx/onnx</a>
                     <ul>
-                        <li><Link to="https://github.com/onnx/onnx/blob/rel-1.2.3/docs/Operators.md">Operators.md</Link></li>
+                        <li><a href="https://github.com/onnx/onnx/blob/rel-1.2.3/docs/Operators.md">Operators.md</a></li>
                     </ul>
                 </li>
             </ul>
